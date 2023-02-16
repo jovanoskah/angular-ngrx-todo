@@ -1,0 +1,18 @@
+<div class="todo">
+  <input class="styled-checkbox" [id]="todo._id" type="checkbox" [checked]="todo.isCompleted" (change)="changeTodoStatus()">
+  <label [for]="todo._id"></label>
+
+  <div class="todo_text" *ngIf="!isEditingMode">
+    {{todo.text}}
+  </div>
+
+  <ng-container *ngIf="isEditingMode">
+    <input class="todo__edit" [value]="todo.text" (keyup)="changeTodoText($event)"/>
+  </ng-container>
+      
+  <div class="todo__buttons">
+    <button *ngIf="!isEditingMode" (click)="isEditingMode = true" class="todo__button todo__button--edit">Edit</button>
+    <button *ngIf="isEditingMode" (click)="saveEditedTodo(); isEditingMode = false;" class="todo__button todo__button--edit">Save</button>
+    <button (click)="removeTodo(todo._id)" class="todo__button todo__button--remove">Remove</button>
+  </div>
+</div>

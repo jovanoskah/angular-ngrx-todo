@@ -1,0 +1,17 @@
+<div class="todos">
+  <div class="todos__title">Todos</div>
+
+  <input 
+    type="text" 
+    autofocus 
+    [value]="todoText" 
+    placeholder="Add new todo" 
+    (keyup)="changeText($event)"
+    (keyup.enter)="addTodo()"
+    class="todos__input"/>
+  
+  <div *ngFor="let todo of todos$ | async" class="todos__todo">
+    <app-todo [todo]="todo"></app-todo>
+  </div>
+</div>
+
